@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/ussd',["uses"=>"USSDController@index"]);
+Route::post('/ussd',[
+	'as'=>'ussd',
+	'uses'=>'USSDController@index']);

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class USSDController extends Controller
 {
-    protected $user_current_leveel;
+    protected $user_current_level;
 
     public function index(Request $request)
     {

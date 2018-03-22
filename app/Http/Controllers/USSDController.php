@@ -16,17 +16,19 @@ class USSDController extends Controller
 
         switch ($input['level']) {
             case 0:
-                $response = $this->getMainMenu();
-                break;
+            $response = $this->getMainMenu();
+            break;
             case 1:
             $response = $this->getCityInput();
             break;
+
             case 2:
             $response = $this->getAccountType();
+            break;
 
             default:
             $response = $this->getErrorMessage();
-                break;
+            break;
 
         }
 
@@ -43,7 +45,7 @@ class USSDController extends Controller
         return "Please enter your city".PHP_EOL.;
     }
     public function getAccountType() {
-        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee".PHP_EOL.;
+        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
     }
 
     function getErrorMessage()

@@ -18,11 +18,14 @@ class USSDController extends Controller
             case 0:
                 $response = $this->getMainMenu();
                 break;
-            
-            
+            case 1:
+            $response = $this->getCityInput();
+            break;
+            case 2:
+            $response = $this->getAccountType();
 
             default:
-                $response = $this->getMainMenu();
+            $response = $this->getErrorMessage();
                 break;
 
         }
@@ -34,7 +37,13 @@ class USSDController extends Controller
 
     public function getMainMenu()
     {
-        return "Please choose option".PHP_EOL. "1.Plumber".PHP_EOL. "2.Electrician";
+        return "Please enter your name".PHP_EOL.; //"1.Plumber".PHP_EOL. "2.Electrician" .PHP_EOL. "Mama Wa Nguo";
+    }
+    public function getCityInput() {
+        return "Please enter your city".PHP_EOL.;
+    }
+    public function getAccountType() {
+        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee".PHP_EOL.
     }
 
     function getErrorMessage()

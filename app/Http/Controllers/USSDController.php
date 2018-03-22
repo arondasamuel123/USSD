@@ -43,7 +43,7 @@ class USSDController extends Controller
         return "Please enter your city".PHP_EOL.;
     }
     public function getAccountType() {
-        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee".PHP_EOL.
+        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee".PHP_EOL.;
     }
 
     function getErrorMessage()

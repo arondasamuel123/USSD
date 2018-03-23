@@ -35,7 +35,7 @@ class USSDController extends Controller
 
            
             case 4:
-            $response = $this->register($request);
+            $response = $this->register();
             break;
 
             default:
@@ -80,10 +80,10 @@ class USSDController extends Controller
 
     
 
-    public function register(Request $request) {
+    public function register() {
 
-       $user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
-       
+       $user = User::create(['name', 'city', 'phonenumber','accounttype']);
+
         return "Thank you for registering";
 
         $this->sendResponse($response, 2);

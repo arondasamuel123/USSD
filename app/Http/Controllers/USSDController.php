@@ -65,7 +65,7 @@ class USSDController extends Controller
         
 
     }
-    public function register() {
+    public function register(Request $request) {
 
     $phonenumber = $request->get('phonenumber');
 

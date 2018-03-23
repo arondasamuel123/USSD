@@ -28,11 +28,8 @@ class USSDController extends Controller
             case 2:
             $response = $this->getAccountType($input);
             break;
+            
             case 3:
-            $response = $this->getPhonenumber($input);
-            break;
-
-            case 4:
             $response = $this->register();
             break;
 
@@ -59,12 +56,7 @@ class USSDController extends Controller
        
     }
 
-    public function getPhonenumber($input) {
-       
-            return "Please enter your phonenumber". PHP_EOL;
-        
-       
-    }
+   
     public function getAccountType($input) {
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
@@ -73,7 +65,7 @@ class USSDController extends Controller
         
 
     }
-    public function register(Request $request) {
+    public function register() {
 
        $user = new User;
        $user->name = request('name');
@@ -83,6 +75,8 @@ class USSDController extends Controller
        $user->save();
 
         return "Thank you for registering";
+        
+        $this->sendResponse($response, 2);
         
     }
 

@@ -12,7 +12,7 @@ class USSDController extends Controller
     public function index(Request $request)
     {
         $text = $request->get('text');
-        $phonenumber = $request->post('phonenumber');
+        $phonenumber = $request->get('phonenumber');
    
 
         $input = $this->getInput($text);

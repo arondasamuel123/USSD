@@ -18,18 +18,18 @@ class USSDController extends Controller
 
         switch ($input['level']) {
             case 0:
-            $response = $this->getMainMenu($phonenumber);
+            $response = $this->getMainMenu($input);
             break;
 
             case 1:
-            $response = $this->getCityInput($input,$phonenumber);
+            $response = $this->getCityInput($input);
             break;
 
             case 2:
-            $response = $this->getAccountType($input,$phonenumber);
+            $response = $this->getAccountType($input);
             break;
             case 3:
-            $response = $this->register($input,$phonenumber);
+            $response = $this->register();
 
             default:
             $response = $this->getErrorMessage();
@@ -42,51 +42,28 @@ class USSDController extends Controller
     }
 
 
-    public function getMainMenu($phonenumber)
+    public function getMainMenu($input)
     {
-        $user = User::where('phonenumber',$phonenumber)->first();
-        if(!$user)
-        {
-            $user->phonenumber = $phonenumber;
-            $user->save();
-        }
+        
         return "Please enter your name". PHP_EOL; //"1.Plumber".PHP_EOL. "2.Electrician" .PHP_EOL. "Mama Wa Nguo";
     }
-    public function getCityInput($input, $phonenumber) {
-        $message = $input["message"];
-        $user = User::where('phonenumber',$phonenumber)->first();
-        if($user)
-        {
-            $user->name = $message;
-            $user->save();
+    public function getCityInput($input) {
+       
             return "Please enter your city". PHP_EOL;
-        }
-        return "user not found". PHP_EOL;
+        
+       
     }
-    public function getAccountType($input, $phonenumber) {
-        $message = $input["message"];
-        $user = User::where('phonenumber',$phonenumber)->first();
-        if($user)
-        {
-            $user->city = $message;
-            $user->save();
+    public function getAccountType($input) {
+      
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
-        }
-        return "user not found". PHP_EOL;
+        
+        
         
 
     }
-    public function register($input, $phonenumber) {
-        $message = $input["message"];
-        $user = User::where('phonenumber',$phonenumber)->first();
-        if($user)
-        {
-            $user->city = $message;
-            $user->save();
-            return "Thank you for registering";
-          
-        }
-        return "user not found". PHP_EOL;
+    public function register() {
+        $user = User::create(['name','city','phonenumber','accounttype']);
+        return "Thank you for registering";
         
     }
 

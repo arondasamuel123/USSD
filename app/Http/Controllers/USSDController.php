@@ -12,9 +12,7 @@ class USSDController extends Controller
     public function index(Request $request)
     {
         $text = $request->get('text');
-        $phonenumber = $request->get('phonenumber');
-   
-
+        
         $input = $this->getInput($text);
 
         switch ($input['level']) {
@@ -30,9 +28,10 @@ class USSDController extends Controller
             $response = $this->getAccountType($input);
             break;
 
-            case 3
+            case 3:
             $response = $this->getPhonenumber($input);
             break;
+
             case 4:
             $response = $this->register();
             break;
@@ -78,7 +77,7 @@ class USSDController extends Controller
     }
 
     public function register() {
-        
+
        $user = new User;
        $user->name = request('name');
        $user->city = request('city');

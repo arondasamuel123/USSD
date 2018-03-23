@@ -12,6 +12,7 @@ class USSDController extends Controller
     public function index(Request $request)
     {
         $text = $request->get('text');
+        $phonenumber = $request->get('phonenumber');
    
 
         $input = $this->getInput($text);
@@ -65,9 +66,9 @@ class USSDController extends Controller
         
 
     }
-    public function register(Request $request) {
+    public function register($phonenumber) {
 
-    $phonenumber = $request->get('phonenumber');
+   
 
        $user = new User;
        $user->name = request('name');

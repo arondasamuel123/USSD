@@ -29,9 +29,12 @@ class USSDController extends Controller
             case 2:
             $response = $this->getAccountType($input);
             break;
-            
-            case 3:
-            $response = $this->register($phonenumber);
+
+            case 3
+            $response = $this->getPhonenumber($input);
+            break;
+            case 4:
+            $response = $this->register();
             break;
 
             default:
@@ -66,14 +69,20 @@ class USSDController extends Controller
         
 
     }
-    public function register($phonenumber) {
 
-   
+    public function getPhonenumber($input) {
+       
+            return "Please enter your phonenumber". PHP_EOL;
+        
+       
+    }
 
+    public function register() {
+        
        $user = new User;
        $user->name = request('name');
        $user->city = request('city');
-       $user->phonenumber = $phonenumber;
+       $user->phonenumber = request('phonenumber');
        $user->accounttype = request('accounttype');
        $user->save();
 

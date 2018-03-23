@@ -12,7 +12,7 @@ class USSDController extends Controller
     public function index(Request $request)
     {
         $text = $request->get('text');
-        $phonenumber = $request->get('phonenumber');
+        $phonenumber = $request->post('phonenumber');
    
 
         $input = $this->getInput($text);
@@ -31,7 +31,7 @@ class USSDController extends Controller
             break;
             
             case 3:
-            $response = $this->register();
+            $response = $this->register($phonenumber);
             break;
 
             default:

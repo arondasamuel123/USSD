@@ -32,7 +32,7 @@ class USSDController extends Controller
             $response = $this->getAccountType($input,$phoneNumber);
             break;
 
-            case 3
+            case 3:
             $response = $this->register($phoneNumber);
             break;
 

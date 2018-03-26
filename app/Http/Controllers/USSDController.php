@@ -63,7 +63,7 @@ class USSDController extends Controller
     }
 
     public function getPhonenumber($input) {
-        $message1 = $input["message"];
+        $message = $input["message"];
        
             return "Please enter your phonenumber". PHP_EOL;
         
@@ -72,7 +72,7 @@ class USSDController extends Controller
 
    
     public function getAccountType($input) {
-        $message2 = $input["message"];
+        $message = $input["message"];
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
         
@@ -87,12 +87,12 @@ class USSDController extends Controller
 
        //$user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
         $user = new User;
-        $user->name = $message;
-        $user->city = $mesaage1;
-        $user->phonenumber = $message2;
+        $user->name = request('name');
+        $user->city = request('city');
+        $user->phonenumber = request('phonenumber');
         $user->accounttype = request('accounttype');
         $user->save();
-        
+
         return "Thank you for registering";
 
       

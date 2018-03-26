@@ -11,31 +11,29 @@ class USSDController extends Controller
 
     public function index(Request $request)
     {
+        $sessionId = $request->get('sessionId');
+        $serviceCode = $request->get('serviceCode');
+        $phoneNumber = $request->get('phoneNumber');
         $text = $request->get('text');
         
         $input = $this->getInput($text);
 
         switch ($input['level']) {
             case 0:
-            $response = $this->getMainMenu($input);
+            $response = $this->getMainMenu($input,$phoneNumber);
             break;
 
             case 1:
-            $response = $this->getCityInput($input);
+            $response = $this->getCityInput($input,$phoneNumber);
             break;
+
 
             case 2:
-            $response = $this->getPhonenumber($input);
+            $response = $this->getAccountType($input,$phoneNumber);
             break;
 
-
-            case 3:
-            $response = $this->getAccountType($input);
-            break;
-
-           
-            case 4:
-            $response = $this->register($request);
+            case 3
+            $response = $this->register($phoneNumber);
             break;
 
             default:
@@ -49,12 +47,12 @@ class USSDController extends Controller
     }
 
 
-    public function getMainMenu($input)
+    public function getMainMenu($input, $phoneNumber)
     {
         
         return "Please enter your name". PHP_EOL; //"1.Plumber".PHP_EOL. "2.Electrician" .PHP_EOL. "Mama Wa Nguo";
     }
-    public function getCityInput($input) {
+    public function getCityInput($input,$phoneNumber) {
         $message = $input["message"];
        
             return "Please enter your city". PHP_EOL;
@@ -62,16 +60,8 @@ class USSDController extends Controller
        
     }
 
-    public function getPhonenumber($input) {
-        $message = $input["message"];
-       
-            return "Please enter your phonenumber". PHP_EOL;
-        
-       
-    }
-
    
-    public function getAccountType($input) {
+    public function getAccountType($input,phoneNumber) {
         $message = $input["message"];
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
@@ -82,22 +72,15 @@ class USSDController extends Controller
     }
 
     
-
-    public function register(Request $request) {
-
-       //$user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
-        $user = new User;
-        $user->name = request('name');
-        $user->city = request('city');
-        $user->phonenumber = request('phonenumber');
-        $user->accounttype = request('accounttype');
-        $user->save();
+    public function register($phoneNumber)
+       $user = User::create('name', 'city', 'phonenumber','accounttype');
+        // $user = new User;
+        // $user->name = request('name');
+        // $user->city = request('city');
+        // $user->accounttype = request('accounttype');
+        // $user->save();
 
         return "Thank you for registering";
-
-      
-        
-    }
 
 
 

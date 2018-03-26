@@ -35,7 +35,7 @@ class USSDController extends Controller
 
            
             case 4:
-            $response = $this->register();
+            $response = $this->register($request);
             break;
 
             default:
@@ -55,6 +55,7 @@ class USSDController extends Controller
         return "Please enter your name". PHP_EOL; //"1.Plumber".PHP_EOL. "2.Electrician" .PHP_EOL. "Mama Wa Nguo";
     }
     public function getCityInput($input) {
+        $message = $input["message"];
        
             return "Please enter your city". PHP_EOL;
         
@@ -62,6 +63,7 @@ class USSDController extends Controller
     }
 
     public function getPhonenumber($input) {
+        $message1 = $input["message"];
        
             return "Please enter your phonenumber". PHP_EOL;
         
@@ -70,6 +72,7 @@ class USSDController extends Controller
 
    
     public function getAccountType($input) {
+        $message2 = $input["message"];
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
         
@@ -80,13 +83,19 @@ class USSDController extends Controller
 
     
 
-    public function register() {
+    public function register(Request $request) {
 
-       $user = User::create(['name', 'city', 'phonenumber','accounttype']);
-
+       //$user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
+        $user = new User;
+        $user->name = $message;
+        $user->city = $mesaage1;
+        $user->phonenumber = $message2;
+        $user->accounttype = request('accounttype');
+        $user->save();
+        
         return "Thank you for registering";
 
-        $this->sendResponse($response, 2);
+      
         
     }
 

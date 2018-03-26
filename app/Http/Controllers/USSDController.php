@@ -67,12 +67,10 @@ class USSDController extends Controller
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
         
         
-        
+ }       
 
-    }
 
-    
-    public function register($phoneNumber)
+    public function register($phoneNumber) {
        $user = User::create('name', 'city', 'phonenumber','accounttype');
         // $user = new User;
         // $user->name = request('name');
@@ -81,7 +79,7 @@ class USSDController extends Controller
         // $user->save();
 
         return "Thank you for registering";
-
+}
 
 
     function getErrorMessage()

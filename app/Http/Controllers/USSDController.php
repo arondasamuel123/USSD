@@ -61,7 +61,7 @@ class USSDController extends Controller
     }
 
    
-    public function getAccountType($input,phoneNumber) {
+    public function getAccountType($input,$phoneNumber) {
         $message = $input["message"];
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";

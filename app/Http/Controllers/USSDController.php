@@ -32,6 +32,11 @@ class USSDController extends Controller
             $response = $this->getAccountType($input,$phoneNumber);
             break;
 
+            case 3:
+            $response = $this->getData($input,$phoneNumber);
+            break;
+
+
             default:
             $response = $this->getErrorMessage();
             break;
@@ -92,9 +97,29 @@ class USSDController extends Controller
         
           
         }else {
-            
+
             return "user needs to be created";
         }
+
+    public function getData($input,$phoneNumber) {
+        $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+        
+        if($user){
+      
+        $user->accounttype= $message;
+        $user->save();
+       
+        return  "Thank you for registering."
+
+        $this->sendResponse($response, 2);
+          
+        }
+
+        
+
+    } 
       
          
         

@@ -60,7 +60,7 @@ class USSDController extends Controller
         return "Please enter your name". PHP_EOL; 
     }
         else {
-            return "Welcome".$user->name. PHP_EOL;
+            return "Welcome"."  ".$user->name. PHP_EOL;
         }
     }
     public function getCityInput($input,$phoneNumber) {

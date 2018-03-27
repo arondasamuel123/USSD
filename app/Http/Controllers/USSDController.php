@@ -70,7 +70,7 @@ class USSDController extends Controller
  }       
 
 
-    public function register(Request $request, $phoneNumber) {
+    public function register(Request $request) {
         
        $user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
         // $user = new User;

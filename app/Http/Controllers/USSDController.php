@@ -60,17 +60,20 @@ class USSDController extends Controller
     }
     public function getCityInput($input,$phoneNumber) {
 
+
         $message = $input["message"];
 
         $user= User::where('phonenumber',$phoneNumber)->first();
 
         if($user){
-
+      
         $user->name= $message;
         $user->save();
        
             return "Please enter your city". PHP_EOL;
-        
+        }else {
+            return "user needs to be created";
+        }
        
     }
 
@@ -79,11 +82,16 @@ class USSDController extends Controller
         $message = $input["message"];
 
         $user= User::where('phonenumber',$phoneNumber)->first();
-
+        
         if($user){
-
+      
         $user->city= $message;
         $user->save();
+       
+            return "Please enter your city". PHP_EOL;
+        }else {
+            return "user needs to be created";
+        }
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
         
@@ -93,7 +101,7 @@ class USSDController extends Controller
 
 
 
-    function getErrorMessage()
+   public function getErrorMessage()
     {
         return "We do not understand your response";
     }

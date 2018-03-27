@@ -111,7 +111,7 @@ class USSDController extends Controller
         $user->accounttype= $message;
         $user->save();
        
-        return  "Thank you for registering."
+        return  "Thank you for registering";
 
         $this->sendResponse($response, 2);
           

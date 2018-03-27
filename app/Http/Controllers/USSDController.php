@@ -33,7 +33,7 @@ class USSDController extends Controller
             break;
 
             case 3:
-            $response = $this->register();
+            $response = $this->register($request);
             break;
 
             default:

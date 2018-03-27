@@ -45,6 +45,7 @@ class USSDController extends Controller
 
     public function getMainMenu($phoneNumber)
     {
+        $user= User::where('phonenumber',$phoneNumber)->first();
 
         if(!$user){
         $user = new User;

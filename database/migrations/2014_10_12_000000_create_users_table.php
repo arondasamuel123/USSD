@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('city')->nullable();
             $table->string('phonenumber');
-            $table->integer('accounttype');
+            $table->integer('accounttype')->nullable();
             $table->timestamps();
         });
     }

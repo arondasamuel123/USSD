@@ -20,7 +20,7 @@ class USSDController extends Controller
 
         switch ($input['level']) {
             case 0:
-            $response = $this->getMainMenu($input,$phoneNumber);
+            $response = $this->getMainMenu($phoneNumber);
             break;
 
             case 1:
@@ -30,10 +30,6 @@ class USSDController extends Controller
 
             case 2:
             $response = $this->getAccountType($input,$phoneNumber);
-            break;
-
-            case 3:
-            $response = $this->register($request);
             break;
 
             default:
@@ -47,12 +43,22 @@ class USSDController extends Controller
     }
 
 
-    public function getMainMenu($input, $phoneNumber)
+    public function getMainMenu($phoneNumber)
     {
+
+        if(!$user){
+        $user = new User;
+        $user->phonenumber= $phoneNumber;
+        $user->save();
         
-        return "Please enter your name". PHP_EOL; //"1.Plumber".PHP_EOL. "2.Electrician" .PHP_EOL. "Mama Wa Nguo";
+        return "Please enter your name". PHP_EOL; 
+    }
+        else {
+            return "Welcome".$user->name."".;
+        }
     }
     public function getCityInput($input,$phoneNumber) {
+
         $message = $input["message"];
        
             return "Please enter your city". PHP_EOL;
@@ -70,17 +76,6 @@ class USSDController extends Controller
  }       
 
 
-    public function register(Request $request) {
-        
-       $user = User::create(request(['name', 'city', 'phonenumber','accounttype']));
-        // $user = new User;
-        // $user->name = request('name');
-        // $user->city = request('city');
-        // $user->accounttype = request('accounttype');
-        // $user->save();
-
-        return "Thank you for registering";
-}
 
 
     function getErrorMessage()

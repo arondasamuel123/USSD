@@ -88,13 +88,15 @@ class USSDController extends Controller
         $user->city= $message;
         $user->save();
        
-            return "Please enter your city". PHP_EOL;
+        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
+        
+          
         }else {
+            
             return "user needs to be created";
         }
       
-          return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
-        
+         
         
  }       
 

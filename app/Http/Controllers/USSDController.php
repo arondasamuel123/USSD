@@ -61,6 +61,13 @@ class USSDController extends Controller
     public function getCityInput($input,$phoneNumber) {
 
         $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+
+        if($user){
+
+        $user->name= $message;
+        $user->save();
        
             return "Please enter your city". PHP_EOL;
         
@@ -70,6 +77,13 @@ class USSDController extends Controller
    
     public function getAccountType($input,$phoneNumber) {
         $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+
+        if($user){
+
+        $user->city= $message;
+        $user->save();
       
           return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
         

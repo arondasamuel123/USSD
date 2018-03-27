@@ -100,7 +100,7 @@ class USSDController extends Controller
 
             return "user needs to be created";
         }
-
+}
     public function getData($input,$phoneNumber) {
         $message = $input["message"];
 
@@ -119,11 +119,7 @@ class USSDController extends Controller
 
         
 
-    } 
-      
-         
-        
- }       
+    }       
 
 
 

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('city')->nullable();
             $table->string('phonenumber');
+            $table->integer('nationalid')->nullable();
             $table->integer('accounttype')->nullable();
             $table->timestamps();
         });

@@ -75,12 +75,33 @@ class USSDController extends Controller
         $user->name= $message;
         $user->save();
        
-            return "Please enter your city". PHP_EOL;
+            return "Please enter your area of residence/operation-Employees".PHP_EOL;
         }else {
             return "user needs to be created";
         }
        
     }
+
+    public function getNationalID($input,$phoneNumber) {
+
+
+        $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+
+        if($user){
+      
+        $user->city= $message;
+        $user->save();
+       
+            return "Please enter your area of residence/operation-Employees".PHP_EOL;
+        }else {
+            return "user needs to be created";
+        }
+       
+    }
+
+
 
    
     public function getAccountType($input,$phoneNumber) {
@@ -90,10 +111,10 @@ class USSDController extends Controller
         
         if($user){
       
-        $user->city= $message;
+        $user->nationalid= $message;
         $user->save();
        
-        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee";
+        return "Please choose your account type".PHP_EOL. "1.Employer".PHP_EOL. "2.Employee".PHP_EOL."3.Supplier";
         
           
         }else {

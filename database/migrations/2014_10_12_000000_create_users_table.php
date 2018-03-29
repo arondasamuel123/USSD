@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->integer('nationalid')->nullable();
             $table->integer('accounttype')->nullable();
             $table->integer('jobtype')->nullable();
+            $table->integer('supplytype')->nullable();
+
 
             $table->timestamps();
         });

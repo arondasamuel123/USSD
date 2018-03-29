@@ -40,7 +40,7 @@ class USSDController extends Controller
             case 4:
              $response = $this->levelOneProcess($input,$phoneNumber);
             break;
-            
+
              case 5:
                 $response = $this->getJobType($input,$phoneNumber);
                 break;
@@ -161,6 +161,20 @@ class USSDController extends Controller
        }
    }
 
+    public function getSupplierMenu($input,$phoneNumber) {
+        $message = $input["message"];
+
+         $user= User::where('phonenumber',$phoneNumber)->first();
+        
+        if($user){
+      
+        $user->supplytype= $message;
+        $user->save();
+        return "Please choose your supply type".PHP_EOL. "1.Clean water delivery ".PHP_EOL. "2.Gas".PHP_EOL;
+       
+       }
+   }
+
        public function getJobType($input,$phoneNumber) {
         $message = $input["message"];
 
@@ -186,6 +200,9 @@ class USSDController extends Controller
                 break;
             case 2:
                 $response = $this->getEmployeeMenu($input,$phoneNumber);
+                break;
+            case 3:
+                $response = $this->getSupplierMenu($input,$phoneNumber);
                 break;
            
             default:

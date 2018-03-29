@@ -155,6 +155,7 @@ class USSDController extends Controller
         return "Please choose your job type".PHP_EOL. "1.Mama wa Nguo".PHP_EOL. "2.Electrician".PHP_EOL;
        
        }
+   }
 
        public function getJobType($input,$phoneNumber) {
         $message = $input["message"];

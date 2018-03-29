@@ -38,7 +38,7 @@ class USSDController extends Controller
 
             
             case 4:
-             $response = $this->levelOneProcess($input);
+             $response = $this->levelOneProcess($input,$phoneNumber);
             break;
 
 
@@ -158,7 +158,7 @@ class USSDController extends Controller
 
     }
 
-        protected function levelOneProcess($input)
+        protected function levelOneProcess($input,$phoneNumber)
     {
         switch ($input['message']) {
             case 1:

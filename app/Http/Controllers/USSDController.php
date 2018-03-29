@@ -38,7 +38,7 @@ class USSDController extends Controller
 
             
             case 4:
-            $response = $this->getData($input,$phoneNumber);
+             $response = $this->levelOneProcess($input);
             break;
 
 
@@ -62,7 +62,7 @@ class USSDController extends Controller
         $user->phonenumber= $phoneNumber;
         $user->save();
         
-        return "Please enter your name". PHP_EOL; 
+        return "Please enter your full names". PHP_EOL;                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     }
         else {
             return "Welcome"."  ".$user->name. PHP_EOL."Please choose a service".PHP_EOL."1.Mama Wa Ngugo".PHP_EOL."2.Plumber".PHP_EOL."3.Electrician";
@@ -81,10 +81,10 @@ class USSDController extends Controller
         $user->save();
        
             return "Please enter your area of residence/operation-Employees".PHP_EOL;
-        }else {
+        }else {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
             return "user needs to be created";
         }
-       
+
     }
 
     public function getNationalID($input,$phoneNumber) {
@@ -136,15 +136,45 @@ class USSDController extends Controller
       
         $user->accounttype= $message;
         $user->save();
+
+        $response = "Thank you for registering";
        
-        $response="Thank you for registering";
+       }
+        $this->sendResponse($response, 2);  
 
+    }
+    public function getEmployeeMenu($input,$phoneNumber) {
+        $message = $input["message"];
+
+         $user= User::where('phonenumber',$phoneNumber)->first();
         
-          
-        }
-        $this->sendResponse($response, 2);
+        if($user){
+      
+        $user->accounttype= $message;
+        $user->save();
+        return "Please choose your job type".PHP_EOL. "1.Mama wa Nguo".PHP_EOL. "2.Electrician".PHP_EOL.
+       
+       }
 
-    }       
+    }
+
+        protected function levelOneProcess($input)
+    {
+        switch ($input['message']) {
+            case 1:
+                $response = $this->getData();
+                break;
+            case 2:
+                $response = $this->getEmployeeMenu();
+                break;
+            default:
+                $response = $this->getErrorMessage();
+                break;
+        }
+        return $response;
+    }
+
+
 
 
 

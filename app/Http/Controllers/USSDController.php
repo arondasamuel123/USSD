@@ -168,7 +168,7 @@ class USSDController extends Controller
         
         if($user){
       
-        $user->supplytype= $message;
+        $user->accounttype= $message;
         $user->save();
         return "Please choose your supply type".PHP_EOL. "1.Clean water delivery ".PHP_EOL. "2.Gas".PHP_EOL;
        

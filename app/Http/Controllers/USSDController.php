@@ -99,7 +99,7 @@ class USSDController extends Controller
         $user->city= $message;
         $user->save();
        
-            return "Please enter your area of residence/operation-Employees".PHP_EOL;
+            return "Please enter your national ID".PHP_EOL;
         }else {
             return "user needs to be created";
         }

@@ -156,16 +156,36 @@ class USSDController extends Controller
        
        }
 
+       public function getJobType($input,$phoneNumber) {
+        $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+        
+        if($user){
+      
+        $user->jobtype= $message;
+        $user->save();
+
+        $response = "Thank you for registering.Go for vetting at our offices then you will be activated";
+       
+       }
+        $this->sendResponse($response, 2);
+
+       }
+
     }
 
         protected function levelOneProcess($input,$phoneNumber)
     {
         switch ($input['message']) {
             case 1:
-                $response = $this->getData();
+                $response = $this->getData($input,$phoneNumber);
                 break;
             case 2:
                 $response = $this->getEmployeeMenu($input,$phoneNumber);
+                break;
+            case 3:
+                $response = $this->getJobType($input,$phoneNumber);
                 break;
             default:
                 $response = $this->getErrorMessage();

@@ -27,12 +27,17 @@ class USSDController extends Controller
             $response = $this->getCityInput($input,$phoneNumber);
             break;
 
+             case 2:
+            $response = $this->getNationalID($input,$phoneNumber);
+            break;
 
-            case 2:
+
+            case 3:
             $response = $this->getAccountType($input,$phoneNumber);
             break;
 
-            case 3:
+            
+            case 4:
             $response = $this->getData($input,$phoneNumber);
             break;
 

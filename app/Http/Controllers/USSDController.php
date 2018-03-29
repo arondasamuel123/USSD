@@ -173,8 +173,6 @@ class USSDController extends Controller
 
        }
 
-    }
-
         protected function levelOneProcess($input,$phoneNumber)
     {
         switch ($input['message']) {

@@ -40,6 +40,10 @@ class USSDController extends Controller
             case 4:
              $response = $this->levelOneProcess($input,$phoneNumber);
             break;
+            
+             case 5:
+                $response = $this->getJobType($input,$phoneNumber);
+                break;
 
 
             default:
@@ -183,9 +187,7 @@ class USSDController extends Controller
             case 2:
                 $response = $this->getEmployeeMenu($input,$phoneNumber);
                 break;
-            case 3:
-                $response = $this->getJobType($input,$phoneNumber);
-                break;
+           
             default:
                 $response = $this->getErrorMessage();
                 break;

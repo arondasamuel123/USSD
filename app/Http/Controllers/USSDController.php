@@ -165,7 +165,7 @@ class USSDController extends Controller
                 $response = $this->getData();
                 break;
             case 2:
-                $response = $this->getEmployeeMenu();
+                $response = $this->getEmployeeMenu($input,$phoneNumber);
                 break;
             default:
                 $response = $this->getErrorMessage();

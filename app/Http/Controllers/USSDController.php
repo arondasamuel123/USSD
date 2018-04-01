@@ -44,9 +44,6 @@ class USSDController extends Controller
              case 5:
                 $response = $this->getJobType($input,$phoneNumber);
                 break;
-            case 6:
-                $response = $this->getSupplyType($input,$phoneNumber);
-                break;
 
             default:
             $response = $this->getErrorMessage();
@@ -189,30 +186,20 @@ class USSDController extends Controller
 
         $response = "Thank you for registering.Go for vetting at our offices then you will be activated";
        
-       }
-        $this->sendResponse($response, 2);
+       }elseif ($user->accounttype=3) {
 
-       }
-
-
-       public function getSupplyType($input,$phoneNumber) {
-
-        $message = $input["message"];
-
-        $user= User::where('phonenumber',$phoneNumber)->first();
-        
-        if($user->accounttype=3){
-      
-        $user->supplytype= $message;
-        $user->save();
+            $user->supplytype= $message;
+            $user->save();
 
         $response = "Thank you for registering.Your vetting process will be done by customer ratings";
+         } 
+
+          $this->sendResponse($response, 2);
+
+       }
+
+
        
-       }
-        $this->sendResponse($response, 2);
-
-       }
-
 
         protected function levelOneProcess($input,$phoneNumber)
     {

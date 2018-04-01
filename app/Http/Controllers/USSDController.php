@@ -192,6 +192,25 @@ class USSDController extends Controller
 
        }
 
+
+       public function getSupplyType($input,$phoneNumber) {
+        $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+        
+        if($user){
+      
+        $user->supplytype= $message;
+        $user->save();
+
+        $response = "Thank you for registering.Your vetting process will be done by customer ratings";
+       
+       }
+        $this->sendResponse($response, 2);
+
+       }
+
+
         protected function levelOneProcess($input,$phoneNumber)
     {
         switch ($input['message']) {

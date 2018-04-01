@@ -182,7 +182,7 @@ class USSDController extends Controller
 
         $user= User::where('phonenumber',$phoneNumber)->first();
         
-        if($user){
+        if($user->accounttype=2){
       
         $user->jobtype= $message;
         $user->save();
@@ -201,7 +201,7 @@ class USSDController extends Controller
 
         $user= User::where('phonenumber',$phoneNumber)->first();
         
-        if($user->accounttype= 3){
+        if($user->accounttype=3){
       
         $user->supplytype= $message;
         $user->save();

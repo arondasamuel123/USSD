@@ -42,8 +42,9 @@ class USSDController extends Controller
             break;
 
              case 5:
-                $response = $this->getJobType($input,$phoneNumber);
-                break;
+              $response = $this->processInput($input,$phoneNumber);
+            break;
+
 
             default:
             $response = $this->getErrorMessage();
@@ -179,27 +180,36 @@ class USSDController extends Controller
 
         $user= User::where('phonenumber',$phoneNumber)->first();
         
-        if($user->accounttype=2){
+        if($user->accounttype->2){
       
         $user->jobtype= $message;
         $user->save();
 
         $response = "Thank you for registering.Go for vetting at our offices then you will be activated";
        
-       }elseif ($user->accounttype=3) {
-
-            $user->supplytype= $message;
-            $user->save();
-
-        $response = "Thank you for registering.Your vetting process will be done by customer ratings";
-         } 
-
-          $this->sendResponse($response, 2);
+       }
+        $this->sendResponse($response, 2);
 
        }
 
 
+       public function getSupplyType($input,$phoneNumber) {
+        $message = $input["message"];
+
+        $user= User::where('phonenumber',$phoneNumber)->first();
+        
+        if($user->accounttype->3){
+      
+        $user->supplytype= $message;
+        $user->save();
+
+        $response = "Thank you for registering.Your vetting process will be done by customer ratings";
        
+       }
+        $this->sendResponse($response, 2);
+
+       }
+
 
         protected function levelOneProcess($input,$phoneNumber)
     {
@@ -219,6 +229,24 @@ class USSDController extends Controller
                 break;
         }
         return $response;
+    }
+
+    protected function processInput($input,$phoneNumber) {
+            switch ($input['message']) {
+                case 1:
+                $response = $this->getJobType($input,$phoneNumber);
+                break;
+
+                case 2:
+                $response = $this->getSupplyType($input,$phoneNumber);
+                break;
+
+                default:
+                $response = $this->getErrorMessage();
+                break;
+            }
+            return $response;
+
     }
 
 

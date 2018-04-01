@@ -44,7 +44,9 @@ class USSDController extends Controller
              case 5:
                 $response = $this->getJobType($input,$phoneNumber);
                 break;
-
+            case 6:
+                $response = $this->getSupplyType($input,$phoneNumber);
+                break;
 
             default:
             $response = $this->getErrorMessage();

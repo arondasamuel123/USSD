@@ -196,11 +196,12 @@ class USSDController extends Controller
 
 
        public function getSupplyType($input,$phoneNumber) {
+
         $message = $input["message"];
 
         $user= User::where('phonenumber',$phoneNumber)->first();
         
-        if($user){
+        if($user->accounttype= 3){
       
         $user->supplytype= $message;
         $user->save();

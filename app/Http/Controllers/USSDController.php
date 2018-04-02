@@ -18,7 +18,7 @@ class USSDController extends Controller
         
         $input = $this->getInput($text);
 
-        switch ($input['level']) {
+        switch ($input['level']) {//seven levels each doing deal with a menu or a number of menus 
             case 0:
             $response = $this->getMainMenu($phoneNumber);
             break;
@@ -228,7 +228,7 @@ class USSDController extends Controller
        public function selectEmployee($input){
         $message = $input["message"];
 
-        $employee = User::where('jobtype',1)->first();
+        $employee = User::where('jobtype',1)->limit(2);
         $response = $employee->name." ". $employee->phonenumber.PHP_EOL;
 
         $this->sendResponse($response, 2);

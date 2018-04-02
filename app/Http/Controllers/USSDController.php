@@ -69,7 +69,7 @@ class USSDController extends Controller
         return "Please enter your full names". PHP_EOL;                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     }
         else {
-            return "Welcome"."  ".$user->name. PHP_EOL."Please choose a service".PHP_EOL."1.Mama Wa Ngugo".PHP_EOL."2.Electrician".PHP_EOL."3.Gas Delivery".PHP_EOL."4.Clean Water Delivery".PHP_EOL;
+            return "Welcome"."  ".$user->name. PHP_EOL."Please choose a service".PHP_EOL."1.Mama wa Nguo".PHP_EOL."2.Electrician".PHP_EOL."3.Gas Delivery".PHP_EOL."4.Clean Water Delivery".PHP_EOL;
         }
     }
     public function getCityInput($input,$phoneNumber) {

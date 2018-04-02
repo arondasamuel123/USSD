@@ -73,9 +73,11 @@ class USSDController extends Controller
         
         
     }
-        else {
+    elseif($user->accounttype=1) {
+
             return "Welcome"."  ".$user->name. PHP_EOL."Please choose a service".PHP_EOL."1.Mama wa Nguo".PHP_EOL."2.Electrician".PHP_EOL."3.Gas Delivery".PHP_EOL."4.Clean Water Delivery".PHP_EOL;
         }
+
         $this->sendResponse($response, 2);
     }
     public function getCityInput($input,$phoneNumber) {
@@ -215,6 +217,7 @@ class USSDController extends Controller
         $this->sendResponse($response, 2);
 
        }
+       
 
 
         protected function levelOneProcess($input,$phoneNumber)
@@ -254,7 +257,7 @@ class USSDController extends Controller
             return $response;
 
     }
-
+   
 
 
 

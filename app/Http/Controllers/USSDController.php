@@ -24,24 +24,28 @@ class USSDController extends Controller
             break;
 
             case 1:
+             $response = $this->selectInput($input);
+            break;
+
+            case 2:
             $response = $this->getCityInput($input,$phoneNumber);
             break;
 
-             case 2:
+             case 3:
             $response = $this->getNationalID($input,$phoneNumber);
             break;
 
 
-            case 3:
+            case 4:
             $response = $this->getAccountType($input,$phoneNumber);
             break;
 
             
-            case 4:
+            case 5:
              $response = $this->levelOneProcess($input,$phoneNumber);
             break;
 
-             case 5:
+             case 6:
               $response = $this->processInput($input,$phoneNumber);
             break;
 
@@ -220,10 +224,20 @@ class USSDController extends Controller
         $this->sendResponse($response, 2);
 
        }
+
+       public function selectEmployee($input){
+        $message = $input["message"];
+
+        $employee = User::where('jobtype',1)->first();
+        $response = $employee->name." ". $employee->phonenumber.PHP_EOL;
+
+        $this->sendResponse($response, 2);
+
+       }
        
 
 
-        protected function levelOneProcess($input,$phoneNumber)
+        protected function levelOneProcess($input,$phoneNumber)//Display thank you message for different account types
     {
         switch ($input['message']) {
             case 1:
@@ -259,6 +273,19 @@ class USSDController extends Controller
             }
             return $response;
 
+    }
+
+    protected function selectInput($input) {
+        switch ($input['message']) {
+                case 1:
+                $response = $this->selectEmployee($input);
+                break;
+
+                default:
+                $response = $this->getErrorMessage();
+                break;
+            }
+            return $response;
     }
    
 

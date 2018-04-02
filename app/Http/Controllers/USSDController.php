@@ -68,17 +68,20 @@ class USSDController extends Controller
         
         return "Please enter your full names". PHP_EOL; 
 
-    }elseif ($user->accounttype=2 || $user->accounttype=3) {
-        $response = "Your number is registered as an employee or supplier.You will recieve jobs once you are activated";
-        
-        
     }
     elseif($user->accounttype=1) {
 
             return "Welcome"."  ".$user->name. PHP_EOL."Please choose a service".PHP_EOL."1.Mama wa Nguo".PHP_EOL."2.Electrician".PHP_EOL."3.Gas Delivery".PHP_EOL."4.Clean Water Delivery".PHP_EOL;
         }
 
+    elseif ($user->accounttype=2 || $user->accounttype=3) {
+        $response = "Your number is registered as an employee or supplier.You will recieve jobs once you are activated";
+        
         $this->sendResponse($response, 2);
+        
+    }
+
+        
     }
     public function getCityInput($input,$phoneNumber) {
 

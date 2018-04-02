@@ -228,7 +228,7 @@ class USSDController extends Controller
        public function selectEmployee($input){
         $message = $input["message"];
 
-        $employee = User::where('jobtype',1)->first();
+        $employee = User::where('jobtype',1)->first(2);
         $response = $employee->name." ". $employee->phonenumber.PHP_EOL;
 
         $this->sendResponse($response, 2);

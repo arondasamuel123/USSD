@@ -24,33 +24,34 @@ class USSDController extends Controller
             break;
 
             case 1:
+            $this->user_current_level = 2;
+             $response = $this->selectInput($input);
+            break;
+
+            case 2:
+
             $response = $this->getCityInput($input,$phoneNumber);
             break;
 
-             case 2:
+             case 3:
             $response = $this->getNationalID($input,$phoneNumber);
             break;
 
 
-            case 3:
+            case 4:
             $response = $this->getAccountType($input,$phoneNumber);
             break;
 
             
-            case 4:
+            case 5:
              $response = $this->levelOneProcess($input,$phoneNumber);
             break;
 
-             case 5:
+             case 6:
               $response = $this->processInput($input,$phoneNumber);
             break;
 
-             case 6:
-             $response = $this->selectInput($input);
-            break;
-
-
-            default:
+             default:
             $response = $this->getErrorMessage();
             break;
 

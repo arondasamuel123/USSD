@@ -47,7 +47,7 @@ class USSDController extends Controller
             break;
 
              case 6:
-            $this->user_current_level = 2;
+            $this->user_current_level = 3;
              $response = $this->selectInput($input);
             break;
 
